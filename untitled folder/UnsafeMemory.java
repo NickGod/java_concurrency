@@ -23,8 +23,8 @@ class UnsafeMemory {
 		s = new GetNSet(stateArg, maxval);
 		else if (args[0].equals("BetterSafe"))
 		s = new BetterSafe(stateArg, maxval);
-		// else if (args[0].equals("BetterSorry"))
-		// s= new BetterSorry(stateArg, maxval);
+		else if (args[0].equals("BetterSorry"))
+		s= new BetterSorry(stateArg, maxval);
 		else
 		throw new Exception(args[0]);
 	    dowork(nThreads, nTransitions, s);
@@ -63,7 +63,10 @@ class UnsafeMemory {
 	for (int i = 0; i < nThreads; i++)
 	    t[i].start ();
 	for (int i = 0; i < nThreads; i++)
+	{
+		// System.out.println("I am joining the threads!");
 	    t[i].join ();
+	}
 	long end = System.nanoTime();
 	double elapsed_ns = end - start;
 	System.out.format("Threads average %g ns/transition\n",

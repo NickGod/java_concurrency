@@ -1,13 +1,13 @@
 import java.util.concurrent.locks.ReentrantLock;
 
 class BetterSafe implements State {
-    private final ReentrantLock lock = new ReentrantLock();
+    private final ReentrantLock lock;
     private byte[] value;
     private byte maxval;
 
-    BetterSafe(byte[] v) { value = v; maxval = 127; }
+    BetterSafe(byte[] v) { value = v; maxval = 127; lock = new ReentrantLock();}
 
-    BetterSafe(byte[] v, byte m) { value = v; maxval = m; }
+    BetterSafe(byte[] v, byte m) { value = v; maxval = m; lock = new ReentrantLock(); }
 
     public int size() { return value.length; }
 
